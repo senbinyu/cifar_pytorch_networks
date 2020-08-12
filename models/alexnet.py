@@ -1,6 +1,6 @@
 # AlexNet, large net, originally for 224 * 224 image size, first layer stride = 4
 # here for 32 * 32  image size, i modified strides and paddings. channel keeps the same
-# paper: ImageNet Classification with Deep Convolutional Neural Networks
+# paper: ImageNet Classification with Deep Convolutional Neural Networks, 2012
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
