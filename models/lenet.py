@@ -1,5 +1,6 @@
 # lenet. The parameters come from the 'https://towardsdatascience.com/understanding-and-implementing-lenet-5-cnn-architecture-deep-learning-a2d531ebc342'
 # Input size is fixed to be 32 * 32, if want to use other sizes, the parameters in __init__(self) should be modified too.
+# paper: LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86(11), 2278-2324.
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
