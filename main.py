@@ -1,4 +1,7 @@
-'''Train CIFAR10 with PyTorch.'''
+'''
+Train CIFAR10 with PyTorch.
+The main part comes from: https://github.com/kuangliu/pytorch-cifar/blob/master/main.py, I added the dynamic learning rate part
+'''
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -63,7 +66,8 @@ net = LeNet()
 # net = DenseNet121()
 # net = ResNeXt29_2x64d()
 # net = MobileNet()
-# net = MobileNetV2()
+net = MobileNetV2()
+# net = MobileNetv3()
 # net = DPN92()
 # net = ShuffleNetG2()
 # net = SENet18()
@@ -92,8 +96,8 @@ optimizer = optim.SGD(net.parameters(), lr=args.lr,
 def lr_poly(base_lr, iter, max_iter, power):
     return base_lr*((1-float(iter)/max_iter)**(power))
             
-def adjust_learning_rate(optimizer, learning_rate, i_iter, max_iter=200, power=3):
-    """Sets the learning rate to the initial LR divided by 5 at 60th, 120th and 160th epochs"""
+def adjust_learning_rate(optimizer, learning_rate, i_iter, max_iter=1000, power=10):
+    """Sets the learning rate to the initial LR decreases gradually"""
     lr = lr_poly(learning_rate, i_iter, max_iter, power)
     optimizer.param_groups[0]['lr'] = lr
     # return lr	
@@ -161,6 +165,6 @@ def test(epoch):
         best_acc = acc
 
 if __name__ == '__main__':  # this line is necessary for the multiprocess, this is unique in windows
-	for epoch in range(start_epoch, start_epoch+3):
+	for epoch in range(start_epoch, start_epoch+400):
 		train(epoch)
 		test(epoch)
